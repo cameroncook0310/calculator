@@ -4,7 +4,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 540px;
     width: 450px;
     padding: 8px;
     background-color: #353434;
@@ -13,9 +12,11 @@
 }
 
 .calc-display {
-    height: 50px;
-    width: 450px;
+    height: 100px;
+    width: 442px;
     background-color: lightgrey;
+    border: 3px solid black;
+    margin-bottom: 10px;
 }
 
 .button-row {
@@ -23,13 +24,13 @@
 }
 
 .button {
-    height: 70  px;
+    height: 70px;
     width: 112px;
     background-color: lightslategray;
     border: 3px solid black;
     border-radius: 3px;
     text-align: center;
-    line-height: 50px;
+    line-height: 70px;
     flex: auto;
 }
 
