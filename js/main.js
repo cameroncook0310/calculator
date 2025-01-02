@@ -20,43 +20,52 @@ function main() {
 
     let displayContent = document.querySelector(".display-content");
 
-    let currentOperator = ""
-    let num1 = ""
-    let num2 = ""
+    let currentOperator = "";
+    let num1 = "";
+    let num2 = "";
 
     document.addEventListener("click", (e) => {
         target = e.target;
 
-        // Populates the display with the number pressed and stores number in variable
+        // Stores number inputs as a variable and 
         if (target.classList.contains("number")) {
             if (currentOperator == "") {
-                num1 += target.textContent
-                displayContent.textContent = num1
+                num1 += target.textContent;
+                displayContent.textContent = num1;
             } else {
-                num2 += target.textContent
+                num2 += target.textContent;
                 displayContent.textContent = num2
             }
         }
 
+        // Handles a new operator being pressed, triggers the operate function if an operator and num2 are already present
         if (target.classList.contains("operator") && target.id != "=") {
             if (currentOperator == "" || num2 == "") {
-                currentOperator = target.textContent
+                currentOperator = target.textContent;
             } else {
-                num1 = operate(num1, currentOperator, num2)
-                displayContent = num1
-                currentOperator = target.textContent
-                num2 = ""
+                num1 = operate(num1, currentOperator, num2);
+                displayContent.textContent = num1;
+                currentOperator = target.textContent;
+                num2 = "";
             }
         }
 
-        // Triggers the operate function with the current input operation if an operator is present
+        // Triggers the operate function with the current input operation if an operator and num2 is present
         if (target.id == "=") {
             if (currentOperator && num2){
-                num1 = operate(num1, currentOperator, num2)
-                displayContent.textContent = num1
-                currentOperator = ""
-                num2 = ""
+                num1 = operate(num1, currentOperator, num2);
+                displayContent.textContent = num1;
+                currentOperator = "";
+                num2 = "";
             }
+        }
+
+        //  Clears the calculator display and variables
+        if (target.id == "AC") {
+            num1 = "";
+            num2 = "";
+            currentOperator = "";
+            displayContent.textContent = "";
         }
     });
 }
