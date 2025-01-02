@@ -67,6 +67,17 @@ function main() {
             currentOperator = "";
             displayContent.textContent = "";
         }
+
+        // Clears the last number entered
+        if (target.id == "C") {
+            if (currentOperator == "") {
+                num1 = num1.slice(0, -1);
+                displayContent.textContent = num1;
+            } else {
+                num2 = num2.slice(0, -1);
+                displayContent.textContent = num2;
+            }
+        }
     });
 }
 
