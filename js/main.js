@@ -1,13 +1,13 @@
 function main() {
 
-    let display = document.querySelector(".calc-display");
+    let displayContent = document.querySelector(".display-content");
 
 
     document.addEventListener("click", (e) => {
         target = e.target;
 
         if (target.classList.contains("number")) {
-            display.textContent += target.textContent;
+            displayContent.textContent += target.textContent;
         }
     });
 }
