@@ -4,10 +4,10 @@ function operate(num1, operator, num2) {
     num1 = Number(num1)
     num2 = Number(num2)
     if (operator == "+") {
-        return (num1 + num2).toString();
+        return (Math.round((num1 + num2) * 10000) / 10000).toString();     
     }
     if (operator == "-") {
-        return (num1 - num2).toString();       
+        return (Math.round((num1 - num2) * 10000) / 10000).toString();     
     }
     if (operator == "x") {
         return (Math.round((num1 * num2) * 10000) / 10000).toString();      
@@ -128,7 +128,7 @@ function main() {
 
         // Adds a decimal to the end of the current number
         if (target.id == ".") {
-            if (isNewOperation) {
+            if (currentOperator == "" && isNewOperation) {
                 num1 = "";
                 isNewOperation = false;
             }
