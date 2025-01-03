@@ -110,6 +110,7 @@ function main() {
             }
         }
 
+        // Switches the sign of the current number
         if (target.id == "+/-") {
             if (currentOperator == "" && num1) {
                 num1 = (Number(num1) * -1).toString();
@@ -117,8 +118,21 @@ function main() {
             } else if (num2) {
                 num2 = (Number(num2) * -1).toString();
                 displayContent.textContent = num2;
-            }
+            }        
         }
+
+        // Adds a decimal to the end of the current number
+        if (target.id == ".") {
+            if (currentOperator == "" && num1 && !num1.includes(".")) {
+                num1 += ".";
+                displayContent.textContent = num1;
+            } else if (num2 && !num2.includes(".")) {
+                num2 += ".";
+                displayContent.textContent = num2;
+            }        
+        }
+
+        // Adds a decimal to the end of the current number
         
         //if (displayContent.textContent.length > 12) {
         //    displayContent.textContent = "Overflow";
