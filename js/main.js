@@ -20,26 +20,26 @@ function main() {
 
     let displayContent = document.querySelector(".display-content");
 
-    let isNewOperation = true // Tracks if current number should reset or be appended to upon new number being entered
+    let isNewOperation = true; // Tracks if current number should reset or be appended to upon new number being entered
     let currentOperator = "";
     let num1 = "";
     let num2 = "";
 
     document.addEventListener("click", (e) => {
-        target = e.target;
+        let target = e.target;
 
         // Stores number inputs as a variable and 
         if (target.classList.contains("number")) {
             if (currentOperator == "") {
                 if (isNewOperation) {
-                    num1 = ""
-                    isNewOperation = false
+                    num1 = "";
+                    isNewOperation = false;
                 }
                 num1 += target.textContent;
                 displayContent.textContent = num1;
             } else {
                 num2 += target.textContent;
-                displayContent.textContent = num2
+                displayContent.textContent = num2;
             }
         }
 
@@ -62,7 +62,7 @@ function main() {
                 displayContent.textContent = num1;
                 currentOperator = "";
                 num2 = "";
-                isNewOperation = true
+                isNewOperation = true;
             }
         }
 
@@ -98,8 +98,16 @@ function main() {
 
 
         //if (displayContent.textContent.length > 12) {
-        //    displayContent.textContent = "Overflow"
+        //    displayContent.textContent = "Overflow";
         //}
+    });
+
+    document.addEventListener("mousedown", (e) => {
+        let target = e.target;
+
+        if (target.classList.contains("number") || target.classList.contains("function") || target.id == "=") {
+            target.style.filter = "brightness(1.2)";
+        }
     });
 }
 
