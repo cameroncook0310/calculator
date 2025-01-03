@@ -20,6 +20,7 @@ function main() {
 
     let displayContent = document.querySelector(".display-content");
 
+    let isNewOperation = true // Tracks if current number should reset or be appended to upon new number being entered
     let currentOperator = "";
     let num1 = "";
     let num2 = "";
@@ -30,6 +31,10 @@ function main() {
         // Stores number inputs as a variable and 
         if (target.classList.contains("number")) {
             if (currentOperator == "") {
+                if (isNewOperation) {
+                    num1 = ""
+                    isNewOperation = false
+                }
                 num1 += target.textContent;
                 displayContent.textContent = num1;
             } else {
@@ -57,6 +62,7 @@ function main() {
                 displayContent.textContent = num1;
                 currentOperator = "";
                 num2 = "";
+                isNewOperation = true
             }
         }
 
@@ -78,6 +84,22 @@ function main() {
                 displayContent.textContent = num2;
             }
         }
+
+        // Converts the current number into the decimal equavilant to its percentage
+        if (target.id == "%") {
+            if (currentOperator == "") {
+                num1 = (Number(num1) / 100).toString();
+                displayContent.textContent = num1;
+            } else {
+                num2 = (Number(num2) / 100).toString();
+                displayContent.textContent = num2;
+            }
+        }
+
+
+        //if (displayContent.textContent.length > 12) {
+        //    displayContent.textContent = "Overflow"
+        //}
     });
 }
 
