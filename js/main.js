@@ -1,4 +1,5 @@
 
+
 function operate(num1, operator, num2) {
     num1 = Number(num1)
     num2 = Number(num2)
@@ -9,14 +10,14 @@ function operate(num1, operator, num2) {
         return (num1 - num2).toString();       
     }
     if (operator == "x") {
-        return (num1 * num2).toString();      
+        return (Math.round((num1 * num2) * 10000) / 10000).toString();      
     }
     if (operator == "/") {
         // Handles dividing by zero
         if (num2 == 0) {
             return NaN
         }
-        return (num1 / num2).toString();
+        return (Math.round((num1 / num2) * 10000) / 10000).toString();
     }
 }
 
@@ -24,7 +25,7 @@ function main() {
 
     let displayContent = document.querySelector(".display-content");
 
-    let isNewOperation = true; // Tracks if current number should reset or be appended to upon new number being entered
+    let isNewOperation = false; // Tracks if current number should reset or be appended to upon new number being entered
     let currentOperator = "";
     let num1 = "";
     let num2 = "";
@@ -127,18 +128,22 @@ function main() {
 
         // Adds a decimal to the end of the current number
         if (target.id == ".") {
-            if (currentOperator == "" && num1 && !num1.includes(".")) {
+            if (isNewOperation) {
+                num1 = "";
+                isNewOperation = false;
+            }
+            if (currentOperator == "" && !num1.includes(".")) {
                 num1 += ".";
                 displayContent.textContent = num1;
-            } else if (num2 && !num2.includes(".")) {
+            } else if (currentOperator != "" && !num2.includes(".")) {
                 num2 += ".";
                 displayContent.textContent = num2;
             }        
         }
         
-        //if (displayContent.textContent.length > 12) {
-        //    displayContent.textContent = "Overflow";
-        //}
+        if (displayContent.textContent.length > 12 || (Number(num1) > 1e+20 && currentOperator == "")) {
+            displayContent.textContent = "Overflow";
+        }
     });
 
     
