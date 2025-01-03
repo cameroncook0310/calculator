@@ -24,11 +24,12 @@ function main() {
     let currentOperator = "";
     let num1 = "";
     let num2 = "";
+    let lastClickedOperator; // Tracks last clicked operator
 
     document.addEventListener("click", (e) => {
         let target = e.target;
 
-        // Stores number inputs as a variable and 
+        // Stores number inputs as a variable and in the display 
         if (target.classList.contains("number")) {
             if (currentOperator == "") {
                 if (isNewOperation) {
@@ -51,8 +52,15 @@ function main() {
                 num1 = operate(num1, currentOperator, num2);
                 displayContent.textContent = num1;
                 currentOperator = target.textContent;
+                lastClickedOperator.style.filter = "brightness(1)"
+                lastClickedOperator = null
                 num2 = "";
             }
+            target.style.filter = "brightness(1.2)";
+            if (lastClickedOperator) {
+                lastClickedOperator.style.filter = "brightness(1)";
+            }
+            lastClickedOperator = target;
         }
 
         // Triggers the operate function with the current input operation if an operator and num2 is present
@@ -61,6 +69,8 @@ function main() {
                 num1 = operate(num1, currentOperator, num2);
                 displayContent.textContent = num1;
                 currentOperator = "";
+                lastClickedOperator.style.filter = "brightness(1)";
+                lastClickedOperator = null
                 num2 = "";
                 isNewOperation = true;
             }
@@ -71,6 +81,10 @@ function main() {
             num1 = "";
             num2 = "";
             currentOperator = "";
+            if (lastClickedOperator) {
+                lastClickedOperator.style.filter = "brightness(1)";
+                lastClickedOperator = null;
+            }
             displayContent.textContent = "";
         }
 
@@ -102,20 +116,25 @@ function main() {
         //}
     });
 
-    let mouseDownButton 
+    
+    let mouseDownButton // Keeps track on last non operator button with a mousedown event
 
     document.addEventListener("mousedown", (e) => {
         let target = e.target;
 
+        // Increases brightness of any none operator button with a mousedown event
         if (target.classList.contains("number") || target.classList.contains("function") || target.id == "=") {
             target.style.filter = "brightness(1.2)";
             mouseDownButton = target;
         }
     });
 
+    // Returns a non operator button to its original brightness after a mouseup event
     document.addEventListener("mouseup", e => {
+        if (mouseDownButton) {
         mouseDownButton.style.filter = "brightness(1)";
-        mouseDownButton = null
+        }
+        mouseDownButton = null;
     });
 
 }
