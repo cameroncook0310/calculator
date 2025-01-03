@@ -4,20 +4,20 @@ function operate(num1, operator, num2) {
     num1 = Number(num1)
     num2 = Number(num2)
     if (operator == "+") {
-        return (Math.round((num1 + num2) * 10000) / 10000).toString();     
+        return (Math.round((num1 + num2) * 1000000) / 1000000).toString();     
     }
     if (operator == "-") {
-        return (Math.round((num1 - num2) * 10000) / 10000).toString();     
+        return (Math.round((num1 - num2) * 1000000) / 1000000).toString();     
     }
     if (operator == "x") {
-        return (Math.round((num1 * num2) * 10000) / 10000).toString();      
+        return (Math.round((num1 * num2) * 1000000) / 1000000).toString();      
     }
     if (operator == "/") {
         // Handles dividing by zero
         if (num2 == 0) {
             return NaN
         }
-        return (Math.round((num1 / num2) * 10000) / 10000).toString();
+        return (Math.round((num1 / num2) * 1000000) / 1000000).toString();
     }
 }
 
