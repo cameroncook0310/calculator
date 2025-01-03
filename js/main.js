@@ -102,13 +102,22 @@ function main() {
         //}
     });
 
+    let mouseDownButton 
+
     document.addEventListener("mousedown", (e) => {
         let target = e.target;
 
         if (target.classList.contains("number") || target.classList.contains("function") || target.id == "=") {
             target.style.filter = "brightness(1.2)";
+            mouseDownButton = target;
         }
     });
+
+    document.addEventListener("mouseup", e => {
+        mouseDownButton.style.filter = "brightness(1)";
+        mouseDownButton = null
+    });
+
 }
 
 main();
