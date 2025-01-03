@@ -117,10 +117,10 @@ function main() {
 
         // Switches the sign of the current number
         if (target.id == "+/-") {
-            if (currentOperator == "" && num1) {
+            if (currentOperator == "" && num1 && num1 != ".") {
                 num1 = (Number(num1) * -1).toString();
                 displayContent.textContent = num1;
-            } else if (num2) {
+            } else if (num2 && num2 != ".") {
                 num2 = (Number(num2) * -1).toString();
                 displayContent.textContent = num2;
             }        
