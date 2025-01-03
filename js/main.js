@@ -12,6 +12,10 @@ function operate(num1, operator, num2) {
         return (num1 * num2).toString();      
     }
     if (operator == "/") {
+        // Handles dividing by zero
+        if (num2 == 0) {
+            return NaN
+        }
         return (num1 / num2).toString();
     }
 }
@@ -131,8 +135,6 @@ function main() {
                 displayContent.textContent = num2;
             }        
         }
-
-        // Adds a decimal to the end of the current number
         
         //if (displayContent.textContent.length > 12) {
         //    displayContent.textContent = "Overflow";
@@ -153,7 +155,7 @@ function main() {
     });
 
     // Returns a non operator button to its original brightness after a mouseup event
-    document.addEventListener("mouseup", e => {
+    document.addEventListener("mouseup", (e) => {
         if (mouseDownButton) {
         mouseDownButton.style.filter = "brightness(1)";
         }
